@@ -1,39 +1,38 @@
 #include<bits/stdc++.h>
 using namespace std;
-/*
-1- Tim vi tri co phan tu lon nhat sau i
-2- Neu vi tri do khac i thi doi cho i voi phan tu lon nhat
-*/
-void check()
+
+void solution()
 {
-	int k;cin >> k;
-	string s; cin >> s;
 	int n;
+	int k;
+	string s;
+	cin >> k >> s;
 	if(k>=s.size())
 	{
-		n=s.size();
+		n = s.size();
 	}else
 	{
 		n=k;
 	}
+	vector<int> v;
+	for(int i=0;i<s.size();i++) v.push_back(s[i]);
+	sort(v.begin(),v.end(),greater<int>());
 	for(int i=0;i<n;i++)
 	{
-		int max=i,j=s.size();
-		while(j-->i)
+		for(int j=i;j<s.size();j++)
 		{
-			if(s[j]>s[max]) max=j;
+			if(s[j]==v[i]) swap(s[j],s[i]);
 		}
-		if(max!=i) swap(s[i],s[max]);
-		else k++;
 	}
 	cout << s << endl;
 }
+
 int main()
 {
 	int t;
 	cin >> t;
 	while(t--)
 	{
-		check();
+		solution();
 	}
 }
