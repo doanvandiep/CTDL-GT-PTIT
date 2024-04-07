@@ -6,9 +6,9 @@ int main()
 	cin >> t;
 	while(t--)
 	{
-		int tu,mau;
+		long long tu,mau;
 		cin >> tu >> mau;
-		int res;
+		long long res;
 		while(1)
 		{
 			if(mau%tu==0)
