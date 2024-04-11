@@ -1,0 +1,24 @@
+#include<iostream>
+using namespace std;
+int n, k, s;
+int a[30];
+int solution(int a[], int n, int k, int s)
+{
+	int dp[s+1][k+1]={};
+	dp[0][0]=1;
+	for(int i=1;i<=n;i++)
+	for(int j=s;j>=a[i];j--)
+	for(int z=k;z>=1;z--) dp[j][z]+=dp[j-a[i]][z-1];
+	return dp[s][k];
+}
+int main()
+{
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		cin >> n >> k >> s;
+		for(int i=1;i<=n;i++) cin >> a[i];
+		cout << solution(a, n, k, s) << endl;
+	}
+}
