@@ -1,30 +1,24 @@
-#include<bits/stdc++.h> 
+#include<iostream>
+#include<cmath>
+const int maxn=100006;
 using namespace std;
-const int MAXN = 10005;
-int dp[MAXN];
+int dp[maxn];
 int n;
-void mini() 
-{ 
-    
-    for(int i=0;i<=MAXN;i++) dp[i]=i;
-    for(int i = 1; i <= MAXN; i++)
-    {
-        for(int j = 1; j * j <= i; j++)
-        {
-            dp[i] = min(dp[i], 1 + dp[i - j*j]);
-        }
-    } 
-} 
-
-int main()
+void solution()
 {
-    int t;
-    cin >> t;
-    mini();
-    while(t--)
-    {
-        cin >> n;
-        cout << dp[n] << endl;
-    }
-    return 0;
+	for(int i=0;i<maxn;i++) dp[i]=i;
+	for(int i=0;i<maxn;i++)
+	for(int j=1;j*j<=i;j++) dp[i]=min(dp[i], dp[i-j*j]+1);
+}
+
+main()
+{
+	int t;
+	cin >> t;
+	solution();
+	while(t--)
+	{
+		cin >> n;
+		cout << dp[n] << endl;
+	}
 }
