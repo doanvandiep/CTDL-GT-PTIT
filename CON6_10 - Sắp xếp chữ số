@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		int n;
+		cin >> n;
+		map<char, char > mp;
+		vector<char> v;
+		string res="";
+		for(int i=1;i<=n;i++)
+		{
+			string s;
+			cin >> s;
+			res+=s;
+		}
+		for(char c:res)
+		{
+			mp[c]++;
+		}
+		for(const auto it:mp) cout << it.first << " ";
+		cout << endl;
+	}
+}
