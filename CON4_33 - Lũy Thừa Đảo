@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+#define mod 1000000007
+using namespace std;
+long long n;
+long long reverse(long long n)
+{
+	long long res=0;
+	while(n>0)
+	{
+		int temp=n%10;
+		res=res*10+temp;
+		n/=10;
+	}
+	return res;
+}
+long long powbin(long long n, long long k)
+{
+	if(k==1) return n;
+	if(k==0) return 1;
+	long long res=powbin(n,k/2);
+	if(k%2==0) return res%mod*res%mod;
+	else return res%mod*res%mod*n%mod;
+}
+main()
+{
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		cin >> n;
+		cout << powbin(n, reverse(n)) << endl;
+	}
+}
