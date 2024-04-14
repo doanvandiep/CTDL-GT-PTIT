@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+#define ll unsigned long long int
+using namespace std;
+ll n;
+vector<ll> v;
+void Try(ll i)
+{
+	if(i>1e18) return;
+	v.push_back(i);
+	Try(i*10);
+	Try(i*10+1);
+}
+int main()
+{
+	int t;
+	cin >> t;
+	Try(1);
+	sort(v.begin(), v.end());
+	while(t--)
+	{
+		cin >> n;
+		int cnt=0;
+		for(int i=0;i<v.size();i++)
+		{
+			if(v[i]<=n) cnt++;
+		}
+		cout << cnt << endl;
+	}
+}
