@@ -1,0 +1,24 @@
+#include<iostream>
+#include<cmath>
+const int maxn=100006;
+using namespace std;
+int dp[maxn];
+int n;
+void solution()
+{
+	for(int i=0;i<maxn;i++) dp[i]=i;
+	for(int i=0;i<maxn;i++)
+	for(int j=1;j*j<=i;j++) dp[i]=min(dp[i], dp[i-j*j]+1);
+}
+
+main()
+{
+	int t;
+	cin >> t;
+	solution();
+	while(t--)
+	{
+		cin >> n;
+		cout << dp[n] << " ";
+	}
+}
