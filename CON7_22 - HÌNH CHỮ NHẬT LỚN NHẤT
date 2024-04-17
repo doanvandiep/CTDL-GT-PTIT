@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+int n;
+main()
+{
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		cin >> n;
+		int a[n+5];
+		for(int i=0;i<n;i++) cin >> a[i];
+		int MAX=-100;
+
+		int i=0;
+		while(i<n)
+		{
+			int cnt=0, cnt1=0;
+			for(int j=i+1;j<n;j++)
+			{
+				if(a[j]<a[i]) break;
+				else cnt++;
+			}
+			for(int j=i-1;j>=0;j--)
+			{
+				if(a[j]<a[i]) break;
+				else cnt1++;
+			}
+			MAX=max(MAX, a[i]*(cnt+cnt1+1));
+			i++;
+		}
+		cout << MAX << endl;
+	}
+}
