@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+main()
+{
+	int t;
+	cin >> t;
+	stack<int> stk;
+	while(t--)
+	{
+		string s;
+		cin >> s;
+		if(s=="PUSH")
+		{
+			int n;
+			cin >> n;
+			stk.push(n);
+		}else if(s=="PRINT")
+		{
+			if(!stk.empty()) cout << stk.top() << endl;
+			else cout << "NONE" << endl;
+		}else if(!stk.empty()&&s=="POP")
+		{
+			stk.pop();
+		}
+	}
+}
