@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+main()
+{
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		string s;
+		cin >> s;
+		stack<int> stk;
+		s=s+"I";
+		stk.push(-1);
+		int max=0;
+		for(int i=0;i<s.size();i++)
+		{
+			if(s[i]=='I')
+			{
+				int cnt=i-stk.top();
+				stk.pop();
+				max+=cnt;
+				stk.push(i);
+				for(int i=0;i<cnt;i++)
+				{
+					cout << max-i;
+				}
+			}
+		}
+		cout << endl;
+	}
+}
