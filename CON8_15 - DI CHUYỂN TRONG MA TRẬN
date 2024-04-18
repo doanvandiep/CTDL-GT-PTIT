@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+#define maxn 5
+using namespace std;
+int m, n, c[maxn][maxn], a[maxn][maxn];
+void init()
+{
+	for(int i=0;i<=m;i++)
+	{
+		for(int j=0;j<=n;j++)
+		c[i][j]=-1;
+	}
+}
+void BFS()
+{
+	init();
+	c[1][1]=0;
+	queue<pair<int, int>> q;
+	// dua diem dau tien vao trong hang doi
+	q.push({1, 1});
+	while(!q.empty())
+	{
+		pair<int, int> tmp=q.front(); q.pop();
+		int i = tmp.first, j=tmp.second;
+		// loang den diem co the di toi
+		if(i<=m and i>=1 and j+a[i][j]<=n and j+a[i][j]>=1 and c[i][j+a[i][j]]==-1)
+		{
+			q.push({i, j+a[i][j]});
+			c[i][j+a[i][j]]=c[i][j]+1;
+		}
+		if(i+a[i][j]<=m and i+a[i][j]>=1 and j<=n and j>=1 and c[i+a[i][j]][j]==-1)
+		{
+			q.push({i+a[i][j], j});
+			c[i+a[i][j]][j]=c[i][j]+1;
+		}
+		if(c[m][n]!=-1) break;
+	}
+	cout << c[m][n] << endl;
+}
+main()
+{
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		cin >> m >> n;
+		for(int i=1;i<=m;i++)
+		{
+			for(int j=1;j<=n;j++)
+			{
+				cin >> a[i][j];
+			}
+		}
+		BFS();
+	}
+}
