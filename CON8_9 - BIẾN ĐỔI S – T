@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+#define maxn 10005
+/*
+c[i] cho biet so thao tac de s bien doi thanh i
+c[i] de danh dau i da duoc duyet chua
+c[i]=-1 la chua duyet
+*/
+using namespace std;
+int c[maxn];
+void BFS(int s, int t)
+{
+	if(s==t)
+	{
+		cout << 0 << endl;
+		return;
+	}
+//	for(auto &x:c) x=-1;
+	memset(c, -1, sizeof(c));
+	queue<int> q;
+	q.push(s);
+	c[s]=0;
+	while(1)
+	{
+		int tmp=q.front(); q.pop();
+		if(tmp==t) break;
+		if(tmp-1>=0 and c[tmp-1]==-1)
+		{
+			q.push(tmp-1);
+			c[tmp-1]=c[tmp]+1;
+		}
+		if(tmp<t and c[tmp*2]==-1)
+		{
+			q.push(tmp*2);
+			c[tmp*2]=c[tmp]+1;
+		}
+		if(c[t]!=-1)
+		{
+			break;
+		}
+	}
+	cout << c[t] << endl;
+}
+main()
+{
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		int s, t;
+		cin >> s >> t;
+		BFS(s, t);
+	}
+}
