@@ -1,5 +1,5 @@
 #include<bits/stdc++.h>
-#define maxn 1001
+#define maxn 100
 using namespace std;
 int n, check[maxn], cycle;
 int a[maxn][maxn];
@@ -30,10 +30,10 @@ void solution()
 		a[y][x]=1;
 	}
 	dfs(1,0);
-	for(int i=1;i<=n;i++)
-	{
-		if(check[i]==0) cycle=1;
-	}
+//	for(int i=1;i<=n;i++)
+//	{
+//		if(check[i]==0) cycle=1;
+//	}
 	if(cycle) cout << "NO";
 	else cout << "YES";
 }
