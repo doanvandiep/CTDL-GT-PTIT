@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<vector<int> > vt;
+const ll mod = 1e9 + 7;
+const int oo = 1e6 + 7;
+#define maxn 1005
+int a[maxn][maxn];
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+		int n;
+		cin >> n;
+		vector<int> ke[maxn];
+		for(int i=1;i<=n;i++)
+		{
+			for(int j=1;j<=n;j++)
+			{
+				cin >> a[i][j];
+				if(a[i][j]==1)
+				{
+					ke[i].push_back(j);
+				}
+			}
+		}
+		for(int i=1;i<=n;i++)
+		{
+			cout << i << ": ";
+			for(int j=0;j<ke[i].size();j++)
+			{
+				cout << ke[i][j] <<" ";
+			}
+			cout << '\n';
+		}
+		cout << '\n';
+    return 0;
+}
