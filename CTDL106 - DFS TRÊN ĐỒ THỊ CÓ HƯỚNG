@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<vector<int> > vt;
+const ll mod = 1e9 + 7;
+const int oo = 1e6 + 7;
+#define maxn 1005
+int check[maxn];
+vector<int> adj[maxn];
+void DFS(int u)
+{
+	cout << u << " ";
+	check[u]=1;
+	for(int v:adj[u])
+	{
+		if(!check[v]) DFS(v);
+	}
+}
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+    int t; cin >> t;
+    while(t--)
+	{
+		memset(check, 0, sizeof(check));
+		int V,E,u;
+		cin >> V >> E >> u;
+		for(int i=0;i<E;i++)
+		{
+			int x, y;
+			cin >> x>> y;
+			adj[x].push_back(y);
+		}
+		DFS(u);
+		cout << '\n';
+    }
+    return 0;
+}
