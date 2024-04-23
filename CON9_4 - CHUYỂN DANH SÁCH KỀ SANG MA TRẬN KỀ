@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef long double ld;
+typedef pair<int, int> p;
+typedef vector<vector<int> > vt;
+typedef vector<pair<int, int> > vp;
+const ll mod = 1e9 + 7;
+const int oo = 1e6 + 7;
+
+#define maxn 1005
+void FileIO(){
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
+}
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+    int n;
+    cin >> n;
+    string s;
+    cin.ignore();
+	  vt ke(maxn, vector<int>(maxn, 0));
+    for(int i = 1; i <= n; i++) {
+        getline(cin, s);
+        s += " ";
+        int so = 0;
+        int j = 0;
+        while(j < s.size()) {
+            if(s[j] > '0' && s[j] <= '9') {
+                so = so * 10 + (s[j] - '0');
+            } else if(so > 0) {
+                ke[i][so] = 1;
+                so = 0;
+            }
+            j++;
+        }
+    }
+    for(int i = 1; i <= n; i++) {
+        for(int j = 1; j <= n; j++) {
+            cout << ke[i][j] << " ";
+        }
+        cout << '\n';
+    }
+    return 0;
+}
