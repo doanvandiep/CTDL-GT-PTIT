@@ -1,0 +1,70 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+typedef unsigned long long ull;
+typedef vector<vector<int> > vt;
+const ll mod = 1e9 + 7;
+const int oo = 1e6 + 7;
+#define maxn 1005
+int check[maxn];
+int truoc[maxn];
+void DFS(int u, int v, vector<int> adj[])
+{
+	if(check[v]) return;
+	check[u]=1;
+	for(int p:adj[u])
+	{
+		if(!check[p])
+		{
+			truoc[p]=u;
+			DFS(p, v, adj);
+		}
+	}
+}
+void Trace(int u, int v)
+{
+	if(!check[u])
+	{
+		cout << -1;
+		return;
+	}
+	vector<int> a;
+	while(u!=v)
+	{
+		a.push_back(u);
+		u = truoc[u];
+	}
+	a.push_back(v);
+	reverse(a.begin(), a.end());
+	for(int i=0;i<a.size();i++)
+	{
+		cout << a[i] << " ";
+	}
+}
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+    int t; cin >> t;
+    while(t--)
+	{
+		int V, E, s , t;
+		cin >> V >> E >> s >> t;
+		memset(check, 0, sizeof(check));
+		memset(truoc, 0, sizeof(truoc));
+		vector<int> adj[maxn];
+		for(int i=0;i<E;i++)
+		{
+			int x, y;
+			cin >> x >> y;
+			adj[x].push_back(y);
+			adj[y].push_back(x);
+		}
+		DFS(s, t , adj);
+		Trace(t, s);
+		cout << '\n';
+    }
+    return 0;
+}
