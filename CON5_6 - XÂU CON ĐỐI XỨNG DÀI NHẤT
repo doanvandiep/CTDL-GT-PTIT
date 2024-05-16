@@ -1,0 +1,43 @@
+#include<iostream>
+#include<cmath>
+#include<stack>
+#include<string>
+#include<vector>
+#include<map>
+#include<queue>
+#include<algorithm>
+// Tư tưởng giống xâu con chung dài nhất nhưng phải
+// đổi chỗ xâu tmp
+
+using namespace std;
+int main()
+{
+    int t;
+    cin >> t;
+    cin.ignore();
+    while (t--)
+    {
+        string s;
+		cin >> s;
+		string tmp=s;
+		reverse(tmp.begin(), tmp.end());
+		int n=s.size();
+		int cnt=0;
+		int dp[1000][1000];
+		for(int i=0;i<=n;i++)
+		{
+			for(int j=0;j<=n;j++)
+			{
+				if(i==0||j==0) dp[i][j]=0;
+				else if(s[i-1]==tmp[j-1])
+				{
+					dp[i][j]= dp[i-1][j-1]+1;
+					cnt = max(cnt, dp[i][j]);
+				}else dp[i][j]=0;
+			}
+		}
+		cout << cnt << endl;
+    }
+	//system("pause");
+    return 0;
+}
