@@ -1,0 +1,55 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+    int t; cin >> t;
+    while(t--)
+	{
+		int n;
+		string st, ed, k;
+		string tmp;
+		set<string> s;
+		pair<string, int> u, v;
+		queue<pair<string, int>> q;
+		cin >> n >> st >>ed;
+		for(int i=0;i<n;i++)
+		{
+			cin >> k;
+			s.insert(k);
+		}
+		s.erase(st);
+		u.first = st;
+		u.second = 1;
+		q.push(u);
+		while(!q.empty())
+		{
+			u=q.front();
+			q.pop();
+			if(u.first==ed)
+			{
+				cout << u.second << endl;
+				break;
+			}
+			v.second = u.second + 1;
+			for(int i=0;i<u.first.size();i++)
+			{
+				tmp=u.first;
+				for(char j='A';j<='Z';j++)
+				{
+					tmp[i]=j;
+					if(s.find(tmp)!=s.end())
+					{
+						s.erase(tmp);
+						v.first = tmp;						
+						q.push(v);
+					}
+				}
+			}
+		}
+    }
+    return 0;
+}
