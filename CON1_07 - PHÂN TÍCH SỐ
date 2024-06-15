@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void printPartitions(int n, int max, string prefix) {
+    if (n == 0) {
+        cout << "(" << prefix.substr(0, prefix.size() - 1) << ") ";
+        return;
+    }
+    for (int i = min(n, max); i >= 1; i--) {
+        printPartitions(n - i, i, prefix + to_string(i)+" ");
+    }
+}
+
+int main() {
+	int T;
+    cin >> T;
+    while (T--) {
+        int N;
+        cin >> N;
+        printPartitions(N, N, "");
+        cout << endl;
+    }
+    return 0;
+}
