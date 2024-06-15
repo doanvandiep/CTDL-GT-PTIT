@@ -6,7 +6,8 @@ int main() {
     int t; cin >> t;
     while(t--)
 	{
-		int n; cin >> n;
+		int n;
+		cin >> n;
 		vector<string> ans;
 		ans.push_back("0");
 		ans.push_back("1");
@@ -15,10 +16,10 @@ int main() {
 			for(int j=ans.size()-1;j>=0;j--)
 			{
 				ans.push_back("1"+ans[j]);
-				ans[j]= "0"+ans[j];
+				ans[j]="0"+ans[j];
 			}
 		}
-		for(string &s:ans) cout << s << " ";
+		for(auto i:ans) cout << i << " ";
 		cout << endl;
     }
     return 0;
