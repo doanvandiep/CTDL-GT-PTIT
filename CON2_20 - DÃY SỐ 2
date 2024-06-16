@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+main()
+{
+	int t;
+	cin >> t;
+	while(t--)
+	{
+		int n;
+		cin >> n;
+		int a[n+1];
+		for(int i=0;i<n;i++) cin >> a[i];
+		n++;
+		stack<string> q;
+		
+		while(n-->1)
+		{
+			string s="";
+			s+="[";
+			for(int i=0;i<n-1;i++)
+			{
+				s+=to_string(a[i])+" ";
+				a[i]=a[i]+a[i+1];
+			}
+			s+=to_string(a[n-1])+"]";
+			q.push(s);
+		}
+		while(!q.empty())
+		{
+			string x=q.top(); q.pop();
+			cout << x << " ";
+		}
+		cout << endl;
+	}
+}
