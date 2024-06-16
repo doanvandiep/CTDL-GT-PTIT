@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+int n, S;
+int x[11], a[11];
+int ok;
+void in(int m)
+{
+	ok=1;
+	cout << "[";
+	for(int i=1;i<m;i++) cout << x[i] << " ";
+	cout << x[m] << "] ";
+}
+void Try(int i, int sum, int pre)
+{
+	for(int j=pre+1;j<=n;j++)
+	{
+		if(sum+a[j]>S) return;
+		x[i]=a[j];
+		if(sum+a[j]==S) in(i);
+		else Try(i+1, sum+a[j], j);
+	}
+}
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);cout.tie(NULL);
+    int t; cin >> t;
+    while(t--)
+	{
+		ok=0;
+		cin >> n >> S;		
+		for(int i=1;i<=n;i++) cin >> a[i];
+		sort(a+1, a+n+1);
+		Try(1, 0, 0);
+		if(ok==0) cout << -1;
+		cout << endl;
+    }
+    return 0;
+}
