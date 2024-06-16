@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+// Su dung priority queue de dua phan tu xuat hien nhieu nhat len truoc
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    int T;cin >> T;
+    while (T--)
+	{
+		int k; cin >> k;
+		string s;
+		cin >> s;
+		map<char, int> mp;
+		for(char &c :s) mp[c]++;
+		priority_queue<int> q;
+		for(auto it : mp) q.push(it.second);
+		while(k--&&!q.empty())
+		{
+			int top=q.top(); q.pop();
+			if(--top) q.push(top);
+		}
+		long long sum=0;
+		while(!q.empty())
+		{
+			int top=q.top(); q.pop();
+			sum+=top*top;
+		}
+		cout << sum << endl;
+    }
+    return 0;
+}
