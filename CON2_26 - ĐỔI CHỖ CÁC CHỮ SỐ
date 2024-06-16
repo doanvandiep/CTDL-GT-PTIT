@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);cout.tie(NULL);
+    int t; cin >> t;
+    while(t--)
+	{
+		int k;
+		string s;
+		cin >> k >> s;
+		for(int i=0;i<s.size()&&k > 0;i++)
+		{
+			int maxIdx = i;
+			for(int j=i+1;j<s.size();j++)
+			{
+				if(s[j]>=s[maxIdx]) maxIdx=j;
+			}
+			if(maxIdx!=i)
+			{
+				swap(s[i], s[maxIdx]);
+				k--;
+			}
+		}
+		cout << s << endl;
+    }
+    return 0;
+}
