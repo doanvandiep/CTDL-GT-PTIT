@@ -1,0 +1,29 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int T;
+    cin >> T;
+    while (T--) {
+        int N, K;
+        cin >> N >> K;
+        vector<int> A(N);
+        for (int &x : A) cin >> x;
+        sort(A.begin(), A.end());
+
+        int sum1 = 0, sum2 = 0;
+        for (int i = 0; i < K; i++) sum1 += A[i];
+        for (int i = K; i < N; i++) sum2 += A[i];
+        int result1 = abs(sum2 - sum1);
+
+        sum1 = sum2 = 0;
+        for (int i = 0; i < N - K; i++) sum1 += A[i];
+        for (int i = N - K; i < N; i++) sum2 += A[i];
+        int result2 = abs(sum2 - sum1);
+
+        cout << max(result1, result2) << endl;
+    }
+    return 0;
+}
