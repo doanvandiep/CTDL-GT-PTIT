@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int t, board[8][8], maxScore;
+bitset<8> col;         // Đánh dấu các cột
+bitset<15> d1, d2;     // Đánh dấu các đường chéo chính và phụ
+
+void placeQueens(int r, int score) {
+    if (r == 8) {  // Đặt đủ 8 quân hậu
+        maxScore = score;
+        return;
+    }
+    for (int c = 0; c < 8; ++c) {
+        if (!col[c] && !d1[r + c] && !d2[r - c + 7]) { // Kiểm tra nếu có thể đặt quân hậu
+            col[c] = d1[r + c] = d2[r - c + 7] = 1;
+            placeQueens(r + 1, score + board[r][c]);
+            col[c] = d1[r + c] = d2[r - c + 7] = 0;
+        }
+    }
+}
+
+int main() {
+    cin >> t;
+    while (t--) {
+        for (int i = 0; i < 8; ++i)
+            for (int j = 0; j < 8; ++j)
+                cin >> board[i][j];
+        maxScore = 0;
+        placeQueens(0, 0); // Bắt đầu từ hàng đầu tiên
+        cout << maxScore << '\n';
+    }
+    return 0;
+}
