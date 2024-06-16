@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>  // Thư viện bao gồm tất cả các thư viện chuẩn của C++
+using namespace std;
+
+int a[20][20], n, res = INT_MAX; // Ma trận chi phí, số lượng thành phố, và biến lưu chi phí nhỏ nhất
+bool dd[20] = {}; // Mảng đánh dấu các thành phố đã thăm
+
+void Try(int i, int sum = 0, int cnt = 1) {
+    if(sum > res) return; // Nếu chi phí hiện tại lớn hơn chi phí nhỏ nhất đã tìm thấy, dừng lại
+    if(cnt == n) { // Nếu đã thăm tất cả các thành phố
+        res = min(res, sum + a[i][1]); // Cập nhật chi phí nhỏ nhất nếu có thể quay lại thành phố ban đầu
+        return;
+    }
+    for(int j = 1; j <= n; ++j) {
+        if(!dd[j]) { // Nếu thành phố j chưa được thăm
+            dd[j] = 1; // Đánh dấu thành phố j đã thăm
+            Try(j, sum + a[i][j], cnt + 1); // Đệ quy từ thành phố j, cập nhật chi phí và số lượng thành phố đã thăm
+            dd[j] = 0; // Bỏ đánh dấu thành phố j để thử các khả năng khác
+        }
+    }
+}
+
+int main() {
+    cin >> n; // Đọc số lượng thành phố
+    for(int i = 1; i <= n; ++i) 
+        for(int j = 1; j <= n; ++j) cin >> a[i][j]; // Đọc ma trận chi phí
+    dd[1] = 1; // Đánh dấu thành phố 1 đã thăm
+    Try(1); // Bắt đầu từ thành phố 1
+    cout << res; // In ra chi phí nhỏ nhất
+    return 0;
+}
