@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+int n, k, s, ans;
+
+void Try(int i, int sum, int pre)
+{
+	for(int j=pre+1;j<=n;j++)
+	{
+		if(sum+j>s) return;
+		if(i==k&&sum+j==s) ans++;
+		else Try(i+1, sum+j, j);
+	}
+}
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+	while(1)
+	{
+		cin >> n >> k >> s;
+		if(!n&&!k&&!s) break;
+		ans=0;
+		Try(1, 0, 0);
+		cout << ans << endl;
+	}
+    return 0;
+}
