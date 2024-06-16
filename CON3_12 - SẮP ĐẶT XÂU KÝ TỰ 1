@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    int T;cin >> T;
+    while (T--)
+	{
+		string s;
+		cin >> s;
+		map<int, char> mp;
+		for(int i=0;i<s.size();i++)
+		{
+			mp[s[i]]++;
+		}
+		int x=max_element(mp.begin(), mp.end()) -> second;
+		int n=s.size();
+		if(x>=n/2+1) cout << -1;
+		else cout << 1;
+		cout << endl;	
+    }
+    return 0;
+}
