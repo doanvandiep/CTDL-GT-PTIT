@@ -1,28 +1,35 @@
 #include<bits/stdc++.h>
-
 using namespace std;
 
-main()
+int main()
 {
-	int t;
-	cin >> t;
-	stack<int> stk;
-	while(t--)
+	int n;
+	cin >> n;
+	string s;
+	vector<int> v;
+	int l=0;
+	for(int i=0;i<n;i++)
 	{
-		string s;
 		cin >> s;
 		if(s=="PUSH")
 		{
 			int n;
 			cin >> n;
-			stk.push(n);
-		}else if(s=="PRINT")
+			v.push_back(n);
+			l++;
+		}
+		if(s=="POP")
 		{
-			if(!stk.empty()) cout << stk.top() << endl;
+			if(!v.empty())
+			{
+				l--;
+				v.resize(l);
+			}
+		}
+		if(s=="PRINT")
+		{
+			if(!v.empty()) cout << v[l-1] << endl;
 			else cout << "NONE" << endl;
-		}else if(!stk.empty()&&s=="POP")
-		{
-			stk.pop();
 		}
 	}
 }
