@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+	int t; cin >> t; 
+	while(t--){
+		string s;
+		cin >> s;
+		stack<char> stk;
+		int ok=1;
+		for(char &c:s)
+		{
+			if(c=='['||c=='('||c=='{') stk.push(c);
+			else if(c==')')
+			{
+				if(stk.empty()) ok=0;
+				else if(stk.top()=='(') stk.pop();
+			}else if(c=='}')
+			{
+				if(stk.empty()) ok=0;
+				else if(stk.top()=='{') stk.pop();
+			}else if(c==']')
+			{
+				if(stk.empty()) ok=0;
+				else if(stk.top()=='[') stk.pop();
+			}
+		}
+		if(stk.size()>0) ok=0;
+		cout << ((ok==1)?"YES":"NO" )<< endl;
+	}
+	return 0;
+}
