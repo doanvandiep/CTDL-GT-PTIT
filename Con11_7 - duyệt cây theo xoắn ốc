@@ -1,0 +1,70 @@
+#include <bits/stdc++.h>
+using namespace std;
+struct node{
+	int val;
+	node *l=NULL, *r=NULL;
+	node (int val)
+	{
+		this->val=val;
+	}
+};
+int par, chi;
+char c;
+void build(node *root)
+{
+	if(root==NULL) return;
+	if(root->val==par)
+	{
+		if(c=='L') root->l=new node(chi);
+		else root->r=new node(chi);
+	}else
+	{
+		build(root->l);
+		build(root->r);
+	}
+}
+void Solve(node *root)
+{
+	stack<node*> stk1;
+	stack<node*> stk2;
+	stk1.push(root);
+	while(!stk1.empty()||!stk2.empty())
+	{
+		while(!stk1.empty())
+		{
+			node *f=stk1.top(); stk1.pop();
+			cout << f-> val << " ";
+			if(f->l) stk2.push(f->l);
+			if(f->r) stk2.push(f->r);
+		}
+		while(!stk2.empty())
+		{
+			node *f=stk2.top(); stk2.pop();
+			cout << f-> val << " ";
+			if(f->l) stk1.push(f->l);
+			if(f->r) stk1.push(f->r);
+		}
+	}	
+}
+
+int main() {
+    int T;cin >> T;
+    while (T--)
+	{
+		int N;
+		cin >> N;
+		node *root=NULL;
+		while(N--)
+		{
+			cin >> par >> chi >> c;
+			if(root==NULL)
+			{
+				root = new node(par);
+			}
+			build(root);
+		}
+		Solve(root);
+		cout << endl;
+    }
+    return 0;
+}
