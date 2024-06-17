@@ -26,24 +26,13 @@ void build(node *root)
 void Solve(node *root)
 {
 	stack<node*> stk1;
-	stack<node*> stk2;
 	stk1.push(root);
-	while(!stk1.empty()||!stk2.empty())
+	while(!stk1.empty())
 	{
-		while(!stk1.empty())
-		{
-			node *f=stk1.top(); stk1.pop();
-			cout << f-> val << " ";
-			if(f->l) stk2.push(f->l);
-			if(f->r) stk2.push(f->r);
-		}
-		while(!stk2.empty())
-		{
-			node *f=stk2.top(); stk2.pop();
-			cout << f-> val << " ";
-			if(f->l) stk1.push(f->l);
-			if(f->r) stk1.push(f->r);
-		}
+		node *f=stk1.top(); stk1.pop();
+		cout << f-> val << " ";
+		if(f->l) stk1.push(f->l);
+		if(f->r) stk1.push(f->r);
 	}	
 }
 
