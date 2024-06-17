@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    string s;
+		vector<int> v;
+		int l=0;
+		while(cin >> s)
+		{
+			if(s=="push")
+			{
+				int n;
+				cin >> n;
+				v.push_back(n);
+				l++;
+			}
+			if(s=="show")
+			{
+				if(v.empty())
+				{
+					cout << "empty" << endl;
+				}else
+				{
+					for(auto x:v) cout << x << " ";
+					cout << endl;
+				}
+			}
+			if(s=="pop")
+			{
+				if(!v.empty())
+				{
+					l--;
+					v.resize(l);
+				}
+			}
+		}
+    return 0;
+}
