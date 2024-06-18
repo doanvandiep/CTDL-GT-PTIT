@@ -1,24 +1,15 @@
 #include <bits/stdc++.h>
+#define maxn 1006
 using namespace std;
-
-typedef long long ll;
-typedef unsigned long long ull;
-typedef vector<vector<int> > vt;
-const ll mod = 1e9 + 7;
-const int oo = 1e6 + 7;
-#define maxn 1005
-int check[maxn];
-int truoc[maxn];
+int check[maxn], truoc[maxn];
 void BFS(int u, int v, vector<int> adj[])
 {
+	check[u]=1;
 	queue<int> q;
 	q.push(u);
-	check[u]=1;
 	while(!q.empty())
 	{
-		int top=q.front();
-		q.pop();
-		check[top]=1;
+		int top=q.front(); q.pop();
 		if(top==v) return;
 		for(int p:adj[top])
 		{
@@ -35,45 +26,37 @@ void Trace(int u, int v)
 {
 	if(!check[u])
 	{
-		cout << -1;
+		cout << -1 << endl;
 		return;
 	}
 	vector<int> a;
 	while(u!=v)
 	{
 		a.push_back(u);
-		u = truoc[u];
+		u=truoc[u];
 	}
 	a.push_back(v);
-	reverse(a.begin(), a.end());
-	for(int i=0;i<a.size();i++)
-	{
-		cout << a[i] << " ";
-	}
+	for(int i=a.size()-1;i>=0;i--) cout << a[i] << " ";
+	cout << endl;
 }
 int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
-
-    int t; cin >> t;
-    while(t--)
+    int T;cin >> T;
+    while (T--)
 	{
-		int V, E, s , t;
+		int V, E, s, t;
 		cin >> V >> E >> s >> t;
-		memset(check, 0, sizeof(check));
-		memset(truoc, 0, sizeof(truoc));
 		vector<int> adj[maxn];
-		for(int i=0;i<E;i++)
+		memset(check, 0, sizeof(check));
+		//memset(truoc, 0 ,sizeof(truoc));
+		for(int i=1;i<=E;i++)
 		{
 			int x, y;
 			cin >> x >> y;
 			adj[x].push_back(y);
 			adj[y].push_back(x);
 		}
-		BFS(s, t , adj);
+		BFS(s, t, adj);
 		Trace(t, s);
-		cout << '\n';
     }
     return 0;
 }
