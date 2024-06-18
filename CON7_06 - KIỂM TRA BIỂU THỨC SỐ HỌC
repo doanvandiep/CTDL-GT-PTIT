@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+//Trường hợp 1: dấu đóng ngoặc nhưng đỉnh là mở ngoặc => không có các toán tử ở giữa nên sai
+//Trường hợp 2: có dấu đóng ngoặc như ko có mở ngoặc => sai
+//Trường hợp 3: có dấu đóng ngoặc có dấu mở ngoặc có toán tử ở giữa thì pop mở ngoặc khỏi stack
 int main()
 {
 	int t; cin >> t;
