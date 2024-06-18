@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+#define maxn 1005
+using namespace std;
+
+int main()
+{
+	int n;
+	cin >> n;
+	int a[n+1][n+1];
+	memset(a, 0, sizeof(a));
+	for(int i=1;i<=n;i++)
+	{
+		int x, y;
+		cin >> x >> y;
+		a[i][x]=1;
+		a[i][y]=1;
+	}
+	for(int i=1;i<=n;i++)
+	{
+		for(int j=1;j<=n;j++) cout << a[i][j] << " ";
+		cout << endl;
+	}
+}
