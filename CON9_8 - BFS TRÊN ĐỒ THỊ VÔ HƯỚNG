@@ -1,25 +1,17 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-typedef long long ll;
-typedef unsigned long long ull;
-typedef vector<vector<int> > vt;
-const ll mod = 1e9 + 7;
-const int oo = 1e6 + 7;
+#include<bits/stdc++.h>
 #define maxn 1005
+using namespace std;
 int check[maxn];
-
-void BFS(vector<int> adj[], int u)
+void BFS(int u, vector<int> adj[])
 {
+	check[u]=1;
 	queue<int> q;
 	q.push(u);
-	check[u]=1;
 	while(!q.empty())
 	{
-		int v=q.front();
-		q.pop();
+		int v=q.front(); q.pop();
 		cout << v << " ";
-		for(int x:adj[v])
+		for(int x: adj[v])
 		{
 			if(!check[x])
 			{
@@ -29,27 +21,23 @@ void BFS(vector<int> adj[], int u)
 		}
 	}
 }
-int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
-
-    int t; cin >> t;
-    while(t--)
+int main()
+{
+	int t; cin >> t;
+	while(t--)
 	{
-		vector<int> adj[maxn];
 		int V, E, u;
 		cin >> V >> E >> u;
+		vector<int> adj[maxn];
 		memset(check, 0, sizeof(check));
-		for(int i=0;i<E;i++)
+		for(int i=1;i<=E;i++)
 		{
 			int x, y;
 			cin >> x >> y;
 			adj[x].push_back(y);
 			adj[y].push_back(x);
 		}
-		BFS(adj, u);
-		cout << '\n';
-    }
-    return 0;
+		BFS(u, adj);
+		cout << endl;
+	}
 }
