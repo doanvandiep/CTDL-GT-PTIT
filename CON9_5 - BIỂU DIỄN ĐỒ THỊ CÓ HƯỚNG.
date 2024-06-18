@@ -1,44 +1,29 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
+#define maxn 1005
 using namespace std;
 
-typedef long long ll;
-typedef unsigned long long ull;
-typedef vector<vector<int> > vt;
-const ll mod = 1e9 + 7;
-const int oo = 1e6 + 7;
-#define maxn 1005
-
-int check[maxn];
-int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
-
-    int t; cin >> t;
-    while(t--)
+int main()
+{
+	int t; cin >> t;
+	while(t--)
 	{
 		int V, E;
 		cin >> V >> E;
 		vector<int> adj[maxn];
-		for(int i=0;i<E;i++)
+		for(int i=1;i<=E;i++)
 		{
 			int x, y;
-			cin >> x>> y;
+			cin >> x >> y;
 			adj[x].push_back(y);
 		}
 		for(int i=1;i<=V;i++)
 		{
-			sort(adj[i].begin(), adj[i].end());
-		}
-		for(int i=1;i<=V;i++)
-		{
-			cout << i << ": ";
+			cout << i << ": "; 
 			for(int j=0;j<adj[i].size();j++)
 			{
-				cout << adj[i][j]<<" ";
+				cout << adj[i][j] << " ";
 			}
-			cout << '\n';
+			cout << endl;
 		}
-    }
-    return 0;
+	}
 }
