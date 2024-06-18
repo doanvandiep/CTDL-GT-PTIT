@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int t; cin >> t;
+	cin.ignore();
+	while(t--)
+	{
+		string s;
+		getline(cin , s);
+		stack<char> stk;
+		int ok=1;
+		for(int i=0;i<s.size();i++)
+		{
+			if('a'<=s[i]&&s[i]<='z') continue;
+			if(s[i]!=')') stk.push(s[i]);
+			else
+			{
+				if(stk.empty()||stk.top()=='(')
+				{
+					ok=0; break;
+				}
+				while(stk.size()&&stk.top()!='(') stk.pop();
+				if(stk.empty())
+				{
+					ok=0;
+					break;
+				}
+				stk.pop();
+			}
+		}
+		if(ok) cout << "No" << endl;
+		else cout << "Yes" << endl;
+	}
+}
