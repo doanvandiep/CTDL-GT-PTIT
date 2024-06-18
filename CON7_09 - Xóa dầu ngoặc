@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<string> v;
+map<string, bool> mp;
+void Try(string s)
+{
+	stack<int> stk;
+	vector<pair<int, int>> vp;
+	for(int i=0;i<s.size();i++)
+	{
+		if(s[i]=='(') stk.push(i);
+		else if(s[i]==')')
+		{
+			vp.emplace_back(stk.top(), i);
+			stk.pop();
+		}
+	}
+	if(vp.empty()) return;
+	for(auto &p:vp)
+	{
+		string tmp=s;
+		tmp.erase(tmp.begin()+p.second);
+		tmp.erase(tmp.begin()+p.first);
+		if(!mp[tmp])
+		{
+			mp[tmp]=1;
+			v.push_back(tmp);
+			Try(tmp);
+		}
+	}
+}
+int main()
+{
+	string s;
+	cin >> s;
+	Try(s);
+	sort(v.begin(), v.end());
+	for(auto &it: v) cout << it << endl;
+}
