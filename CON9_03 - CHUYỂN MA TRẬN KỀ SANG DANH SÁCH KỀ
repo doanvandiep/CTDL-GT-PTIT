@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+#define maxn 1005
+using namespace std;
+
+int main()
+{
+	int n;
+	cin >> n;
+	int a[n+1][n+1];
+	vector<int> ke[maxn];
+	for(int i=1;i<=n;i++)
+	{
+		for(int j=1;j<=n;j++)
+		{
+			cin >> a[i][j];
+			if(a[i][j]==1) ke[i].push_back(j);
+		}
+	}
+	for(int i=1;i<=n;i++)
+	{
+		for(int j=0;j<ke[i].size();j++)
+		{
+			cout << ke[i][j] << ' ';
+		}
+		cout << endl;
+	}
+}
