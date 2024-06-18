@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int n,k ,a[100], b[100];
+
+bool check(string& res){
+	int cnt = 0;
+	for(int i = 0 ; i < res.size(); ++i){
+		if(res.substr(i,k) == string(k,'A')){
+			if((i > 0 && res[i-1] == 'A') || (i+k < res.size() && res[i+k] == 'A')){
+				return false;
+			}
+			cnt ++;
+			i += k-1;
+		}
+	}
+	return cnt == 1;
+}
+void Try( string res,vector<string>&vt){
+	if(res.size() == n){
+		if(check(res)){
+			vt.push_back(res);
+		}
+	}
+	else {
+		Try(res + "A",vt);
+		Try(res + "B",vt);
+	}
+}
+string ress(string res){
+	string seq ="";
+	for(auto x : res){
+		seq += x;
+		seq += " ";
+	}
+	return seq;
+}
+int main(){
+	int t;
+	cin >> t;
+	while(t--){
+		vector<string>vt;
+		cin >> n >> k;
+		Try("",vt);
+		sort(vt.begin(),vt.end());
+		cout << vt.size();
+		for(string x : vt){
+			cout << endl << ress(x);
+		}
+	}
+}
