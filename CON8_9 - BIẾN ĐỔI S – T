@@ -1,53 +1,30 @@
 #include<bits/stdc++.h>
-#define maxn 10005
-/*
-c[i] cho biet so thao tac de s bien doi thanh i
-c[i] de danh dau i da duoc duyet chua
-c[i]=-1 la chua duyet
-*/
+#define ll long long
+#define maxn 1006
 using namespace std;
-int c[maxn];
-void BFS(int s, int t)
+int check[maxn];
+int main()
 {
-	if(s==t)
-	{
-		cout << 0 << endl;
-		return;
-	}
-//	for(auto &x:c) x=-1;
-	memset(c, -1, sizeof(c));
-	queue<int> q;
-	q.push(s);
-	c[s]=0;
-	while(1)
-	{
-		int tmp=q.front(); q.pop();
-		if(tmp==t) break;
-		if(tmp-1>=0 and c[tmp-1]==-1)
-		{
-			q.push(tmp-1);
-			c[tmp-1]=c[tmp]+1;
+    int t; cin>>t;
+    while(t--)
+    {
+        int s, t;
+        cin >> s >> t;
+        memset(check, 0, sizeof(check));
+        queue<pair<int, int >> q;
+        q.push({s, 0});
+        while(q.front().first!=t)
+        {
+        	int cur=q.front().first;
+        	int step=q.front().second;
+        	q.pop();
+        	check[cur]=1;
+        	if(!check[cur*2]&&cur<=t)
+        	{
+        		q.push({cur*2, step+1});
+			}
+			if(!check[cur-1]) q.push({cur-1, step+1});
 		}
-		if(tmp<t and c[tmp*2]==-1)
-		{
-			q.push(tmp*2);
-			c[tmp*2]=c[tmp]+1;
-		}
-		if(c[t]!=-1)
-		{
-			break;
-		}
-	}
-	cout << c[t] << endl;
-}
-main()
-{
-	int t;
-	cin >> t;
-	while(t--)
-	{
-		int s, t;
-		cin >> s >> t;
-		BFS(s, t);
-	}
+		cout << q.front().second << endl;
+    }
 }
