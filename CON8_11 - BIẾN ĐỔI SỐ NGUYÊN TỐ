@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+bool ngto(int n)
+{
+	for(int i=2;i<=sqrt(n);i++)
+	{
+		if(n%i==0) return false;
+	}
+	return n>1;
+}
+map<string, int> mp;
+void xuatphat()
+{
+	for(int i=1000;i<10000;i++)
+	{
+		if(ngto(i))
+		{
+			mp[to_string(i)]=1;
+		}
+	}
+}
+int main()
+{
+	int t;
+	cin >> t;
+	xuatphat();
+	while(t--)
+	{
+		string s, t;
+		cin >> s >> t;
+		map<string, int> check;
+		queue<pair<string, int>> q;
+		q.push({s, 0});
+		while(q.front().first!=t)
+		{
+			string num=q.front().first;
+			int step=q.front().second;
+			q.pop();
+			for(int i=0;i<4;i++)
+			{
+				string newN=num;
+				for(int j=0;j<10;j++)
+				{
+					if(i==0&&j==0) continue;
+					newN[i]=j+'0';
+					if(newN==s || check[newN] || !mp[newN]) continue;
+					check[newN]=1;
+					q.push({newN, step+1});
+				}
+			}
+		}
+		cout << q.front().second << endl;
+	}
+}
