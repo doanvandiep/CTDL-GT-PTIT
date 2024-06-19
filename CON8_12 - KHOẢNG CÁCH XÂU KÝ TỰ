@@ -1,55 +1,45 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
+
 using namespace std;
 
-int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
-
-    int t; cin >> t;
-    while(t--)
+int main()
+{
+	int t; cin >> t;
+	while(t--)
 	{
-		int n;
-		string st, ed, k;
-		string tmp;
-		set<string> s;
-		pair<string, int> u, v;
+		int n; cin >> n;
+		string s, t;
+		cin >> s >> t;
+		map<string, int> mp;
+		map<string, int> check;
 		queue<pair<string, int>> q;
-		cin >> n >> st >>ed;
 		for(int i=0;i<n;i++)
 		{
-			cin >> k;
-			s.insert(k);
+			string s; cin >> s;
+			mp[s]=1;
 		}
-		s.erase(st);
-		u.first = st;
-		u.second = 1;
-		q.push(u);
+		q.push({s, 1});
 		while(!q.empty())
 		{
-			u=q.front();
+			string xau=q.front().first;
+			int step=q.front().second;
 			q.pop();
-			if(u.first==ed)
+			if(xau==t)
 			{
-				cout << u.second << endl;
+				cout << step << endl;
 				break;
 			}
-			v.second = u.second + 1;
-			for(int i=0;i<u.first.size();i++)
+			for(int i=0;i<xau.size();i++)
 			{
-				tmp=u.first;
+				string newX=xau;
 				for(char j='A';j<='Z';j++)
 				{
-					tmp[i]=j;
-					if(s.find(tmp)!=s.end())
-					{
-						s.erase(tmp);
-						v.first = tmp;						
-						q.push(v);
-					}
+					newX[i]=j;
+					if(newX==xau||check[newX]||!mp[newX]) continue;
+					check[newX]=1;
+					q.push({newX, step+1});
 				}
 			}
 		}
-    }
-    return 0;
+	}
 }
