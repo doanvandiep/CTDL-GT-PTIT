@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int T;cin >> T;
+    while (T--)
+	{
+		int n, ins, cop, del;
+		cin >>n >> ins >> del >> cop;
+		int dp[n+1];
+		dp[1]=ins;
+		for(int i=2;i<=n;i++)
+		{
+			dp[i]=dp[i-1]+ins;
+			if(i%2) dp[i]=min(dp[i], dp[i/2+1]+cop+del);
+			else dp[i]=min(dp[i], dp[i/2]+cop);
+		}
+		cout  << dp[n] << endl;
+    }
+    return 0;
+}
