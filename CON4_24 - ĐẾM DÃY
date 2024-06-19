@@ -1,0 +1,28 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define mod 123456789
+//2^(n-1)
+using namespace std;
+int n;
+ll binpow(int n)
+{
+	if(n==0) return 1;
+	if(n==1) return 2;
+	ll x=binpow(n/2);
+	if(n%2) return (x*x*2)%mod;
+	else return (x*x)%mod;
+}
+int main() {
+    int T;cin >> T;
+    while (T--)
+	{
+		cin >> n;
+		if(n==0)
+		{
+			cout << 0 << endl;
+			continue;
+		}
+		cout << binpow(n-1) << endl;
+    }
+    return 0;
+}
