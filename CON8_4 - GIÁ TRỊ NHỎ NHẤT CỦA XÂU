@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	int t; cin >> t;
+	
+	int k;
+	string s;
+	while(t--)
+	{
+		cin >> k >> s;
+		priority_queue<int> q;
+		map<char, int> mp;
+		for(char &c:s) mp[c]++;
+		for(auto &it:mp) q.push(it.second);
+		while(k--)
+		{
+			int top=q.top(); q.pop();
+			--top;
+			q.push(top);
+		}
+		long long sum=0;
+		while(q.size())
+		{
+			sum+=1LL*q.top()*q.top();
+			q.pop();
+		}
+		cout << sum << endl;
+	}
+}
