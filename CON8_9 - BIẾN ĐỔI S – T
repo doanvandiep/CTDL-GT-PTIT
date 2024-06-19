@@ -18,12 +18,17 @@ int main()
         	int cur=q.front().first;
         	int step=q.front().second;
         	q.pop();
-        	check[cur]=1;
+        	//check[cur]=1;
         	if(!check[cur*2]&&cur<=t)
         	{
+        		check[cur*2]=1;
         		q.push({cur*2, step+1});
 			}
-			if(!check[cur-1]) q.push({cur-1, step+1});
+			if(!check[cur-1])
+			{
+				check[cur-1]=1;
+				q.push({cur-1, step+1});
+			}
 		}
 		cout << q.front().second << endl;
     }
