@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+#define ll long long
+#define maxn 1006
+using namespace std;
+int check[maxn];
+int main()
+{
+    int t; cin>>t;
+    while(t--)
+    {
+        int s;
+        cin >> s;
+        memset(check, 0, sizeof(check));
+        queue<pair<int, int >> q;
+        q.push({s, 0});
+        while(q.front().first!=1)
+        {
+        	int cur=q.front().first;
+        	int step=q.front().second;
+        	q.pop();
+        	check[cur]=1;
+        	int sqr=sqrt(cur);
+        	for(int i=2; i<=sqr; ++i)
+            {
+                if(cur%i) continue;
+                int ma = cur/i;
+                if(check[ma]) continue;
+                q.push({ma, step+1});
+            }
+			if(!check[cur-1]) q.push({cur-1, step+1});
+		}
+		cout << q.front().second << endl;
+    }
+}
