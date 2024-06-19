@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define maxn 1005
+using namespace std;
+
+int main() {
+    int T;cin >> T;
+    vector<ll> a;
+    map<int, bool> check;
+    priority_queue<ll, vector<ll>, greater<ll>> q;
+    q.push(1);
+    while(a.size()<1e4+1)
+    {
+    	int top=q.top(); q.pop();
+    	a.push_back(top);
+    	check[top]=1;
+    	if(!check[top*2])
+    	{
+    		q.push(top*2);
+    		check[top*2]=1;
+		}
+		if(!check[top*3])
+    	{
+    		q.push(top*3);
+    		check[top*3]=1;
+		}
+		if(!check[top*5])
+    	{
+    		q.push(top*5);
+    		check[top*5]=1;
+		}
+	}
+    while (T--)
+	{
+		int n;
+		cin >> n;
+		cout << a[n-1] << endl;
+    }
+    return 0;
+}
