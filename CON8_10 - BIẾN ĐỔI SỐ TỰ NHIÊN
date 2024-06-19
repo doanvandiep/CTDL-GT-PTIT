@@ -18,13 +18,14 @@ int main()
         	int cur=q.front().first;
         	int step=q.front().second;
         	q.pop();
-        	check[cur]=1;
+        	//check[cur]=1;
         	int sqr=sqrt(cur);
         	for(int i=2; i<=sqr; ++i)
             {
                 if(cur%i) continue;
                 int ma = cur/i;
                 if(check[ma]) continue;
+		check[ma]=1;
                 q.push({ma, step+1});
             }
 			if(!check[cur-1]) q.push({cur-1, step+1});
