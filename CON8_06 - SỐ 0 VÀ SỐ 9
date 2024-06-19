@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+int n;
+
+int main() {
+    int T;cin >> T;
+    while (T--)
+	{
+		cin >> n;
+		queue<long long > q;
+		q.push(9);
+		while(q.front()%n!=0)
+		{
+			long long top=q.front(); q.pop();
+			q.push(top*10);
+			q.push(top*10+9);
+		}
+		cout << q.front() << endl;
+    }
+    return 0;
+}
