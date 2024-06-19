@@ -1,0 +1,29 @@
+#include <bits/stdc++.h>
+using namespace std;
+long long n, i;
+long long a[93];
+void solve()
+{
+	while(n>2)
+	{
+		if(i<=a[n-2]) n-=2;
+		else
+		{
+			i-=a[n-2];
+			n-=1;
+		}
+	}
+	if(n==1) cout << 'A' << endl;
+	else cout << 'B' << endl;
+}
+int main() {
+    int T;cin >> T;
+    a[1]=1, a[2]=1;
+    for(int i=3;i<=93;i++) a[i]=a[i-1]+a[i-2];
+    while (T--)
+	{
+		cin >> n >> i;
+		solve();
+    }
+    return 0;
+}
