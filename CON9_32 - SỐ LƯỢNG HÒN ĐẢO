@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+#define maxn 1005
+using namespace std;
+int check[maxn];
+int a[maxn][maxn];
+//đi từ bên trái trên xong sang phải rồi qua 8 điểm xung quanh
+int di[]={-1, -1, -1, 0, 1, 1, 1, 0};
+int dj[]={-1, 0, 1, 1, 1, 0, -1, -1};
+void Try(int i, int j)
+{
+	if(a[i][j]==0) return;
+	a[i][j]=0;
+	for(int k=0;k<8;k++)
+	{
+		Try(i+di[k],j+dj[k]);
+	}
+}
+int main() {
+    int T;cin >> T;
+    while (T--)
+	{
+		int N, M;
+		cin >> N >> M;
+		memset(check, 0, sizeof(check));
+		for(int i=0;i<N;i++)
+		{
+			for(int j=0;j<M;j++)
+			{
+				cin >> a[i][j];
+			}
+		}
+		int cnt=0;
+		for(int i=0;i<N;i++)
+		{
+			for(int j=0;j<M;j++)
+			{
+				if(a[i][j])
+				{
+					cnt++;
+					Try(i, j);
+				}
+			}
+		}
+		cout << cnt << endl;
+    }
+    return 0;
+}
