@@ -1,51 +1,42 @@
-#include <iostream>
-#include <math.h>
-
+#include<bits/stdc++.h>
+const long long mod=1e9+7;
 using namespace std;
-#define ll long long
-#define MOD 1000000007
-
-struct matran{
-    ll X[2][2];
-    friend matran operator * (matran a, matran b){
-        matran c;
-        for(int i = 0; i < 2; i++){
-            for(int j = 0; j < 2; j++){
-                c.X[i][j] = 0;
-                for(int k = 0; k < 2; k++){
-                    c.X[i][j] += a.X[i][k] * b.X[k][j];
-                    c.X[i][j] %= MOD;
-                }
-            }
-        }
-        return c;
-    }
+struct matrix{
+	long long pos[15][15];
 };
-
-matran binpow(matran a, ll n){
-    if(n == 1){
-        return a;
-    }
-    matran tmp = binpow(a, n / 2);
-    if(n % 2 == 1){
-        return tmp * tmp * a;
-    }
-    else{
-        return tmp * tmp;
-    }
+matrix multi(matrix a, matrix b)
+{
+	matrix temp;
+	for(int i=0;i<2;i++)
+	{
+		for(int j=0;j<2;j++)
+		{
+			temp.pos[i][j]=0;
+			for(int k=0;k<2;k++)
+			{
+				temp.pos[i][j]=(temp.pos[i][j]+a.pos[i][k]*b.pos[k][j]%mod)%mod;
+			}
+		}
+	}
+	return temp;
 }
-
-int main(){
-    int t;
-    cin >> t;
-    while(t--)
-    {
-    	matran a;
-    	int n;
-    	cin >> n;
-	    a.X[0][0] = 1; a.X[0][1] = 1;
-	    a.X[1][0] = 1; a.X[1][1] = 0;
-	    matran res1 = binpow(a, n);
-	    cout  << res1.X[0][1] << endl; 
+matrix power(matrix a, long long n)
+{
+	if(n==1) return a;
+	if(n%2) return multi(a, power(multi(a,a), n/2));
+	else return power(multi(a,a), n/2);
+}
+int main()
+{
+	int t; cin >> t;
+	while(t--)
+	{
+		matrix a;
+		long long n;
+		cin >> n;
+		a.pos[0][0]=1; a.pos[0][1]=1;
+		a.pos[1][0]=1; a.pos[1][1]=0;
+		matrix b=power(a, n);
+		cout << b.pos[0][1] << endl;
 	}
 }
